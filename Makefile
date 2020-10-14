@@ -18,15 +18,15 @@ AUTHOR_EMAIL=msdemlei@ari.uni-heidelberg.de
 
 # Source files for the TeX document (but the main file must always
 # be called $(DOCNAME).tex
-SOURCES = $(DOCNAME).tex
+SOURCES = $(DOCNAME).tex role_diagram.pdf
 
 # List of image files to be included in submitted package (anything that
 # can be rendered directly by common web browsers)
-FIGURES = 
+FIGURES = sembarebro.png
 
 # List of PDF figures (figures that must be converted to pixel images to
 # work in web browsers).
-VECTORFIGURES = 
+VECTORFIGURES = freqfreq.eps
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
 AUX_FILES = 
