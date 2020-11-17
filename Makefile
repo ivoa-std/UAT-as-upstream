@@ -7,7 +7,7 @@ DOCNAME = uat-as-upstream
 DOCVERSION = 1.0
 
 # Publication date, ISO format; update manually for "releases"
-DOCDATE = 2020-09-15
+DOCDATE = 2020-11-17
 
 # What is it you're writing: NOTE, WD, PR, REC, PEN, or EN
 DOCTYPE = PEN
