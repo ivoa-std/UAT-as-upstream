@@ -21,8 +21,7 @@
 
 \editor{Demleitner, M.}
 
-% \previousversion[????URL????]{????Concise Document Label????}
-\previousversion{This is the first public release}
+\previousversion[http://ivoa.net/documents/uat-as-upstream/20201117/]{PEN-1.0-2021117}
        
 
 \begin{document}
@@ -96,10 +95,11 @@ how the IVOA-flavoured UAT might be used.
 \end{figure}
 
 Fig.~\ref{fig:archdiag} shows the role this document plays within the
-IVOA architecture \citep{note:VOARCH}.
+IVOA architecture \citep{2021ivoa.spec.1101D}.
 
 This note is the normative basis for managing the IVOA artefacts for the
-UAT as per Vocabularies in the VO 2 \citep{TODO}.  It is, in particular,
+UAT as per Vocabularies in the VO 2 \citep{2021ivoa.spec.0525D}.  
+It is, in particular,
 required for realising the recommendation in VOResource 1.1
 \citep{2018ivoa.spec.0625P} to use the UAT to assign subject keywords.
 
@@ -115,8 +115,8 @@ modification or deprecation of existing terms.  This steering committee
 at this point consists of representatives of several libraries, the AAS,
 the ADS, the CDS, and IOP publishing\footnote{See
 \url{http://astrothesaurus.org/about/governance/} for a list of current
-members.}.  Members to the steering committee have a two year term, with
-the possibility of renewal.  A call for self nominations to the
+members.}.  Members of the steering committee have a two year term, with
+the possibility of renewal.  A call for self-nominations to the
 committee is distributed to various listservs around the time of the AAS
 Annual meeting (January), and existing SC members vote on and select
 from the pool of nominations in February.  Membership in the SC may be
@@ -137,7 +137,7 @@ and 600 concepts and added between 50 and 250.
 
 It is our conviction that the processes employed by the UAT ensure
 suffient community participation as well as continued evolution of the
-thesaurus as the domain itself evolves.
+thesaurus as the domain evolves.
 
 \section{Mapping The Upstream UAT}
 
@@ -199,7 +199,7 @@ existing concept URI (which will happen if the preferred label folds
 into the same string as a previous concept's preferred label at the time
 of the generation of the mapping rule), the programme will fail, and
 manual resolution is necessary, either by changing the preferred label
-or by adding a local override through oat2ivo's \verb|EXTRA_TRIPLES|.
+or by adding a local override through uat2ivo's \verb|EXTRA_TRIPLES|.
 
 These \verb|EXTRA_TRIPLES| -- a simple dictionary mapping UAT
 identifiers to dictionaries of predicates and string values --
@@ -237,7 +237,7 @@ UAT.
 
 The main use of the IVOA-adopted UAT envisioned at this point is in
 VOResource subjects.  Although the UAT has been adopted with VOResource
-1.1 in 2018, by mid-2020 essentially no uptake had happened, which is
+1.1 in 2018, initial uptake was very low, which is
 understandable given that so far it was unclear whether to really include UAT
 concept URIs, use preferred labels, or do something along the
 lines of this proposal.
@@ -259,14 +259,10 @@ on any RegTAP service (e.g., \url{http://reg.g-vo.org/tap}).
 During the process, it became apparent that the current vocabulary could
 be extended somewhat, in particular with a view to more
 infrastructure-like services (e.g., validators, guides, or a generic
-dataset-delivery service).
+dataset-delivery service).  Efforts to remedy this lack are underway
+using regular UAT procedures.
 
-Also, the co-existence between \vocterm{survey}, \vocterm{catalogs},
-\vocterm{sky-survey}, and \vocterm{celestial-objects-catalog} in the
-current UAT was found to lead to uncertainty as to what term to apply to
-which catalogue-like resource.  Clear definitions for these 
-seem desirable before large-scale re-annotation should be started in the
-VO.
+
 
 \subsection{Using the UAT for Discovery}
 
@@ -335,7 +331,8 @@ contrived examples), isolating one's queries against different levels
 of descriptions on the side of the resource record authors will become a
 increasingly desirable.
 
-The \verb|gavo_vocmatch| ADQL user defined function, available in DaCHS
+The \verb|gavo_vocmatch| ADQL user defined function, which is being
+prototyped in DaCHS \citep{2014A+C.....7...27D} since
 version 2.2, mitigates this; it matches against a term and its narrower
 neighbours (in the case of SKOS).  For instance, as of this writing,
 \begin{lstlisting}[language=SQL]
@@ -383,7 +380,9 @@ adopt the UAT directly.
 \appendix
 \section{Changes from Previous Versions}
 
-No previous versions yet.  
+\subsection{Changes from PEN-1.0-2021117}
+
+Editorial changes only.
 
 \bibliography{ivoatex/ivoabib,ivoatex/docrepo,local}
 
