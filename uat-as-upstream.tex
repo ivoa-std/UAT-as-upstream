@@ -326,12 +326,16 @@ labels to open up wider and narrower concepts.}
 \label{fig:sembarebro}
 \end{SCfigure}
 
-The example shown in Fig.~\ref{fig:sembarebro} suggests another possible use
-use of UAT relationships in VO discovery.  Suppose a user searches 
-for \vocterm{nebluae} (presumably together with other constraints).
-They would then miss narrowser terms; in the figure, that would
-concern \vocterm{interstellar-medium}, \vocterm{supernova-remnants}, and
-\vocterm{reflection-nebulae}, and \vocterm{emission-nebulae}; as service
+The example shown in Fig.~\ref{fig:sembarebro} suggests another possible
+use of UAT relationships in VO discovery. If a data provider didn't evaluate
+the full list of available UAT concepts and used "nebulae" to tag their
+supernova remnats, and a user search for just nebula would miss the
+\vocterm{supernova-remnants}, along with \vocterm{interstellar-medium},
+\vocterm{reflection-nebulae}, and \vocterm{emission-nebulae}. In this situation,
+a user might be interested in resources tagged with nebulae and all resources
+tagged with its UAT child concepts, as long as there aren't too many results.
+And if there are too many results, then narrowing the query to "supernova remnant"
+would cause the user to miss poorly tagged items.  As service
 providers take up the more detailed UAT terms (and in perhaps less
 contrived examples), isolating one's queries against different levels
 of descriptions on the side of the resource record authors will become a
@@ -375,8 +379,8 @@ standards might usefully employ the UAT.
 
 Considering the use cases mentioned in the introduction, the
 SSAP/Obscore target class and VOEvent's \emph{Why}, one might argue that
-in addition to clear and well-defined terms -- which a simple adoption
-of the UAT as-is would provide --, having a strict tree of object
+in addition to clear and well-defined terms, which a simple adoption
+of the UAT as-is would provide, having a strict tree of object
 classes would be beneficial to data consumers.  The main advantage would
 be that they could use a complete branch of narrower terms in query
 expansion, which is not only very hard in a SKOS graph but also
