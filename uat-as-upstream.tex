@@ -214,14 +214,15 @@ As long as UAT releases happen about once per year, we plan to run the
 updates manually; the chair of the Semantics WG will subscribe to the
 release notifications and after a release manually run (adopted to
 technology evolution as necessary), in a checkout of the vocabulary
-sources:
+sources\footnote{At the time of writing, 
+\url{https://github.com/ivoa-std/Vocabularies}}:
 
 \begin{lstlisting}[language=sh]
 $ cd uat
 $ python3 uat2ivo.py
 $ cd ..
 $ editor vocabs.conf  # update timestamp for UAT
-$ svn commit -m "Updating source for new UAT release"
+$ git commit -am "Updating source for new UAT release"
 $ python3 convert.py uat
 \end{lstlisting}
 
@@ -319,7 +320,7 @@ list of the matching resources.
 
 \begin{SCfigure}
 \includegraphics[width=8cm]{sembarebro.png}
-\caption{A screen shot of a part of a sembarebro session; a part of the
+\caption{A screenshot of a part of a sembarebro session; a part of the
 UAT graph is shown, arrows going from wider to narrower terms.  VO
 resources exist for the concepts with IVOA logos, and users can click on
 labels to open up wider and narrower concepts.}
