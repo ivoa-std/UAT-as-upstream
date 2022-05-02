@@ -26,7 +26,7 @@ FIGURES = sembarebro.png
 
 # List of PDF figures (figures that must be converted to pixel images to
 # work in web browsers).
-VECTORFIGURES = freqfreq.eps
+VECTORFIGURES = freqfreq.pdf
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
 AUX_FILES = 

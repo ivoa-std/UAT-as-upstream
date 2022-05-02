@@ -274,8 +274,8 @@ using regular UAT procedures.
 
 To investigate discovery modes enabled by the use of structured subject
 keywords, a mapping of all existing subject keywords in the Registry to
-UAT terms has been undertaken.  The result is available at
-\url{http://svn.ari.uni-heidelberg.de/svn/gavo/hdinputs/sembarebro/res/mapping.tsv},
+UAT terms has been undertaken.  The result is available
+online\footnote{\url{http://svn.ari.uni-heidelberg.de/svn/gavo/hdinputs/sembarebro/res/mapping.tsv}},
 where items that were probably not UAT material were mapped to the
 special value \emph{ivoa:None}, whereas terms that were not found in the
 current UAT but might be considered as bases for UAT concepts later use
@@ -285,10 +285,10 @@ This mapping was then used to create a custom RegTAP extension table,
 \verb|rr.subject_uat|, which links mapped UAT concepts to IVOIDs of
 Registered resources.  It is available on the TAP service at
 \url{http://dc.g-vo.org/tap}.  This results in, at the time of writing,
-a bit more than 300 UAT concepts for which VO resources are found.
+about 420 UAT concepts for which VO resources are found.
 
 \begin{SCfigure}
-\includegraphics[width=7.5cm]{freqfreq.eps}
+\includegraphics[width=7.5cm]{freqfreq.pdf}
 \caption{The distribution of terms found with a given frequency (on the
 x-axis) in a translation of subject keywords in the 2020 Virtual
 Observatory.  Zipf's law predicts this should be a power law (i.e., a
@@ -297,7 +297,7 @@ straight line in this log-log plot)}
 \end{SCfigure}
 
 Looking at the distribution of term frequencies, it turns out 
-that it issomewhat flatter than 
+that it significantly flatter than 
 the power law that Zipf's Law \citep{book:manning} would predict
 here (cf.~Fig.~\ref{fig:freqfreq}).  We suspect this is an indication
 that rarer concepts are under-represented, which in turn is probably due
@@ -327,14 +327,15 @@ labels to open up wider and narrower concepts.}
 \end{SCfigure}
 
 The example shown in Fig.~\ref{fig:sembarebro} suggests another possible
-use of UAT relationships in VO discovery. If a data provider didn't evaluate
-the full list of available UAT concepts and used "nebulae" to tag their
-supernova remnats, and a user search for just nebula would miss the
+use of UAT relationships in VO discovery. If a data provider did not evaluate
+the full list of available UAT concepts and used ``nebulae'' to tag their
+supernova remnants, and a user searches for nebula onlywould miss the
 \vocterm{supernova-remnants}, along with \vocterm{interstellar-medium},
 \vocterm{reflection-nebulae}, and \vocterm{emission-nebulae}. In this situation,
 a user might be interested in resources tagged with nebulae and all resources
 tagged with its UAT child concepts, as long as there aren't too many results.
-And if there are too many results, then narrowing the query to "supernova remnant"
+And if there are too many results, then narrowing the query to 
+\vocterm{supernova-remnants}
 would cause the user to miss poorly tagged items.  As service
 providers take up the more detailed UAT terms (and in perhaps less
 contrived examples), isolating one's queries against different levels
