@@ -76,7 +76,9 @@ turned out to be highly desirable.
 
 These extra identifiers then open up the possibility to publish the UAT
 with all guarantees of IVOA vocabularies, including the provision of
-zero-tooling vocabularies in desise, which will, for instance, simplify
+zero-tooling vocabularies in desise, the simple JSON-based vocabulary
+format introduced in Vocabularies in the VO, version~2
+\citep{2021ivoa.spec.0525D}.  This will, for instance, simplify
 the implementation of registry validators or query expanders.
 
 This document will first briefly discuss the current UAT maintenance,
@@ -105,7 +107,7 @@ required for realising the recommendation in VOResource 1.1
 
 \section{Upstream UAT Curation}
 
-The UAT is the result of a cooperation between major stockholders in
+The UAT is the result of a cooperation between major stakeholders in
 astronomy, including the ADS, journal publishers, and the IVOA Semantics
 group \citep{2014ASPC..485..461A}.  Since it is available under CC-BY-SA, 
 no major legal barriers exist for re-dissemination by the IVOA.
@@ -128,7 +130,8 @@ participation\footnote{\url{http://astrothesaurus.org/about/curation-process/}}
 currently based on github.com's issue tracker, with a mandatory annual
 review; conveniently from an IVOA perspective, the evaluation period for
 such reviews runs from May to November and hence, roughly, from the
-northen spring Interop (that might thus be used to present major
+northen spring Interoperability Conference (that 
+might thus be used to present major
 changes) to the southern spring Interop (where the results of the review
 process could be discussed).
 
@@ -150,18 +153,17 @@ tasks:
 in the VO 2.
 \end{enumerate}
 
-For task (1), we have developed a programme uat2ivo maintained within
-the UAT area of the vocabulary repository\footnote{At the time of
-writing, it is still kept in Volute,
-\url{https://volute.g-vo.org/svn/trunk/projects/semantics/voc-source/uat}.}.
+For task (1), we have developed a program uat2ivo maintained within
+the UAT folder of the IVOA vocabulary source 
+repository\footnote{\url{https://github.com/ivoa-std/Vocabularies/tree/master/uat}.}.
 
-This programme works on the RDF/XML representation that upstream UAT
+This program works on the RDF/XML representation that upstream UAT
 keeps in its version control system.  At this point, it will follow the
 UAT \emph{master} branch; an extra \emph{last-release} branch might be
 considered if it turns out that updates beyond the regular UAT release
 cycle become necessary.
 
-The programme maintains a stable mapping between UAT (numeric) concept
+The program maintains a stable mapping between UAT (numeric) concept
 URIs and IVOA (human-readable) term URIs by parsing the RDF/XML
 representation from the IVOA RDF repository (in \verb|ConceptMapping|'s
 \verb|_fill_from_ivoa| method) and will only create new terms on the
@@ -188,7 +190,7 @@ from \url{http://astrothesaurus.org/uat/885} (preferred label
 \url{http://astrothesaurus.org/uat/895} (preferred label ``L galaxies'')
 \end{bigdescription}
 
-The programme will add \vocterm{skos:exactMatch} elements to the new
+The program will add \vocterm{skos:exactMatch} elements to the new
 SKOS concept it has created linking the new concept to the upstream UAT
 concept.  Where new concepts are created, brief diagnostics are emitted
 in order to raise the operator's attention in case of major malfunctions
@@ -197,7 +199,7 @@ in the mechanism that maintains the stable mapping.
 In the event that a concept URI generated in this way collides with an
 existing concept URI (which will happen if the preferred label folds
 into the same string as a previous concept's preferred label at the time
-of the generation of the mapping rule), the programme will fail, and
+of the generation of the mapping rule), the program will fail, and
 manual resolution is necessary, either by changing the preferred label
 or by adding a local override through uat2ivo's \verb|EXTRA_TRIPLES|.
 
@@ -245,6 +247,8 @@ lines of this proposal.
 In 2020, the GAVO data center switched to using UAT key words as
 proposed here; you can review the result of this procedure by running
 a query like
+
+\begin{minipage}{12cm}
 \begin{lstlisting}[language=SQL]
 SELECT 
   ivo_string_agg(res_title, '') AS title,
@@ -254,7 +258,9 @@ NATURAL JOIN rr.res_subject
 WHERE ivoid LIKE 'ivo://org.gavo.dc%'
 GROUP BY ivoid
 \end{lstlisting}
-on any RegTAP service (e.g., \url{http://reg.g-vo.org/tap}).
+\end{minipage}
+
+\noindent on any RegTAP service (e.g., \url{http://reg.g-vo.org/tap}).
 
 During the process, it became apparent that the current vocabulary could
 be extended somewhat, in particular with a view to more
@@ -268,8 +274,8 @@ using regular UAT procedures.
 
 To investigate discovery modes enabled by the use of structured subject
 keywords, a mapping of all existing subject keywords in the Registry to
-UAT terms has been undertaken.  The result is available at
-\url{http://svn.ari.uni-heidelberg.de/svn/gavo/hdinputs/sembarebro/res/mapping.tsv},
+UAT terms has been undertaken.  The result is available
+online\footnote{\url{http://svn.ari.uni-heidelberg.de/svn/gavo/hdinputs/sembarebro/res/mapping.tsv}},
 where items that were probably not UAT material were mapped to the
 special value \emph{ivoa:None}, whereas terms that were not found in the
 current UAT but might be considered as bases for UAT concepts later use
@@ -279,10 +285,10 @@ This mapping was then used to create a custom RegTAP extension table,
 \verb|rr.subject_uat|, which links mapped UAT concepts to IVOIDs of
 Registered resources.  It is available on the TAP service at
 \url{http://dc.g-vo.org/tap}.  This results in, at the time of writing,
-a bit more than 300 UAT concepts for which VO resources are found.
+about 420 UAT concepts for which VO resources are found.
 
 \begin{SCfigure}
-\includegraphics[width=7.5cm]{freqfreq.eps}
+\includegraphics[width=7.5cm]{freqfreq.pdf}
 \caption{The distribution of terms found with a given frequency (on the
 x-axis) in a translation of subject keywords in the 2020 Virtual
 Observatory.  Zipf's law predicts this should be a power law (i.e., a
@@ -291,8 +297,8 @@ straight line in this log-log plot)}
 \end{SCfigure}
 
 Looking at the distribution of term frequencies, it turns out 
-that it issomewhat flatter than the
-the power law that Zipf's Law \citep{book:manning} would make one expect
+that it significantly flatter than 
+the power law that Zipf's Law \citep{book:manning} would predict
 here (cf.~Fig.~\ref{fig:freqfreq}).  We suspect this is an indication
 that rarer concepts are under-represented, which in turn is probably due
 to the translation from poorer schemes to the UAT.  In other words:
@@ -320,12 +326,17 @@ labels to open up wider and narrower concepts.}
 \label{fig:sembarebro}
 \end{SCfigure}
 
-The example shown in Fig.~\ref{fig:sembarebro} suggests another possible use
-use of UAT relationships in VO discovery.  Suppose a user searches 
-for \vocterm{nebluae} (presumably together with other constraints).
-They would then miss more special terms; in the figure, that would
-concern \vocterm{interstellar-medium}, \vocterm{supernova-remnants}, and
-\vocterm{reflection-nebulae}, and \vocterm{emission-nebulae}; as service
+The example shown in Fig.~\ref{fig:sembarebro} suggests another possible
+use of UAT relationships in VO discovery. If a data provider did not evaluate
+the full list of available UAT concepts and used ``nebulae'' to tag their
+supernova remnants, and a user searches for nebula onlywould miss the
+\vocterm{supernova-remnants}, along with \vocterm{interstellar-medium},
+\vocterm{reflection-nebulae}, and \vocterm{emission-nebulae}. In this situation,
+a user might be interested in resources tagged with nebulae and all resources
+tagged with its UAT child concepts, as long as there aren't too many results.
+And if there are too many results, then narrowing the query to 
+\vocterm{supernova-remnants}
+would cause the user to miss poorly tagged items.  As service
 providers take up the more detailed UAT terms (and in perhaps less
 contrived examples), isolating one's queries against different levels
 of descriptions on the side of the resource record authors will become a
@@ -335,6 +346,8 @@ The \verb|gavo_vocmatch| ADQL user defined function, which is being
 prototyped in DaCHS \citep{2014A+C.....7...27D} since
 version 2.2, mitigates this; it matches against a term and its narrower
 neighbours (in the case of SKOS).  For instance, as of this writing,
+
+\begin{minipage}{12cm}
 \begin{lstlisting}[language=SQL]
 SELECT DISTINCT ivoid 
 FROM rr.resource
@@ -344,7 +357,9 @@ WHERE
   role_name LIKE 'Arias%'
   AND uat_concept='nebulae'
 \end{lstlisting}
-will miss data on the Cas A supernova remnant (although it indisputably
+\end{minipage}
+
+\noindent will miss data on the Cas A supernova remnant (although it indisputably
 is a nebula)\footnote{Again, this example can be run on the TAP service
 at \url{http://dc.g-vo.org/tap}.}.  Changing the last line to
 
@@ -352,7 +367,8 @@ at \url{http://dc.g-vo.org/tap}.}.  Changing the last line to
     AND 1=gavo_vocmatch('uat', 'nebulae', uat_concept)
 \end{lstlisting}
 
-will return three resources, including the one on the supernova remnant,
+\noindent will return three resources, including 
+the one on the supernova remnant,
 as, we claim, users would expect.
 
 \subsection{Other UAT Uses}
@@ -364,8 +380,8 @@ standards might usefully employ the UAT.
 
 Considering the use cases mentioned in the introduction, the
 SSAP/Obscore target class and VOEvent's \emph{Why}, one might argue that
-in addition to clear and well-defined terms -- which a simple adoption
-of the UAT as-is would provide --, having a strict tree of object
+in addition to clear and well-defined terms, which a simple adoption
+of the UAT as-is would provide, having a strict tree of object
 classes would be beneficial to data consumers.  The main advantage would
 be that they could use a complete branch of narrower terms in query
 expansion, which is not only very hard in a SKOS graph but also
