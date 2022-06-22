@@ -21,7 +21,8 @@
 
 \editor{Demleitner, M.}
 
-\previousversion[http://ivoa.net/documents/uat-as-upstream/20201117/]{PEN-1.0-2021117}
+\previousversion[https://ivoa.net/documents/uat-as-upstream/20220502/]{PEN-1.0-20220502}
+\previousversion[http://ivoa.net/documents/uat-as-upstream/20201117/]{PEN-1.0-20211117}
        
 
 \begin{document}
@@ -109,10 +110,10 @@ required for realising the recommendation in VOResource 1.1
 
 The UAT is the result of a cooperation between major stakeholders in
 astronomy, including the ADS, journal publishers, and the IVOA Semantics
-group \citep{2014ASPC..485..461A}.  Since it is available under CC-BY-SA, 
-no major legal barriers exist for re-dissemination by the IVOA.
+group \citep{2014ASPC..485..461A}.  Since it is available under the CC-BY-SA
+licence, no major legal barriers exist for re-dissemination by the IVOA.
 
-A steering committee oversees the adoption of new terms as well as the
+A steering committee (SC) oversees the adoption of new terms as well as the
 modification or deprecation of existing terms.  This steering committee
 at this point consists of representatives of several libraries, the AAS,
 the ADS, the CDS, and IOP publishing\footnote{See
@@ -174,21 +175,22 @@ replacing all runs of non-alphanumeric characters in the preferred label
 with a single dash) and folding case to lowercase.  This yields UAT URIs
 like
 
-\begin{bigdescription}
-\item[\url{http://www.ivoa.net/rdf/uat#achondrites}] from
+\begin{enumerate}
+\raggedright
+\item \url{http://www.ivoa.net/rdf/uat#achondrites} from
 \url{http://astrothesaurus.org/uat/15} (preferred label ``Achondrites'')
-\item[\url{http://www.ivoa.net/rdf/uat#active-galactic-nuclei}]
+\item \url{http://www.ivoa.net/rdf/uat#active-galactic-nuclei}
 from \url{http://astrothesaurus.org/uat/16} (preferred label ``Active
 Galactic Nuclei'')
-\item[\url{http://www.ivoa.net/rdf/uat#hubble-s-law}]
+\item \url{http://www.ivoa.net/rdf/uat#hubble-s-law}
 from \url{http://astrothesaurus.org/uat/763} (preferred label ``Hubble's
 Law'')
-\item[\url{http://www.ivoa.net/rdf/uat#kerr-newman-black-holes }]
+\item \url{http://www.ivoa.net/rdf/uat#kerr-newman-black-holes }
 from \url{http://astrothesaurus.org/uat/885} (preferred label
 ``Kerr-Newman black holes'')
-\item[\url{http://www.ivoa.net/rdf/uat#l-galaxies}] from
+\item \url{http://www.ivoa.net/rdf/uat#l-galaxies} from
 \url{http://astrothesaurus.org/uat/895} (preferred label ``L galaxies'')
-\end{bigdescription}
+\end{enumerate}
 
 The program will add \vocterm{skos:exactMatch} elements to the new
 SKOS concept it has created linking the new concept to the upstream UAT
@@ -396,6 +398,12 @@ adopt the UAT directly.
 
 \appendix
 \section{Changes from Previous Versions}
+
+\subsection{Changes from PEN-1.0-220502}
+
+The URL examples in sect.~3 erroneously used a slash rather than a
+has as the identifier separator; this was misleading enough to warrant a
+a new PEN.
 
 \subsection{Changes from PEN-1.0-2021117}
 

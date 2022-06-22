@@ -7,7 +7,7 @@ DOCNAME = uat-as-upstream
 DOCVERSION = 1.0
 
 # Publication date, ISO format; update manually for "releases"
-DOCDATE = 2022-05-02
+DOCDATE = 2022-06-22
 
 # What is it you're writing: NOTE, WD, PR, REC, PEN, or EN
 DOCTYPE = PEN
@@ -22,7 +22,7 @@ SOURCES = $(DOCNAME).tex role_diagram.pdf
 
 # List of image files to be included in submitted package (anything that
 # can be rendered directly by common web browsers)
-FIGURES = sembarebro.png
+FIGURES = sembarebro.png role_diagram.svg
 
 # List of PDF figures (figures that must be converted to pixel images to
 # work in web browsers).
